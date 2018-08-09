@@ -23,6 +23,11 @@ function closeNav() {
     $("#map_title").html('Nels-Vale Farm');
 }
 
+//Capitalize first letter of strings
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 //console.log("here");
 
 (function() {
@@ -50,11 +55,12 @@ function closeNav() {
      * JSON for colors
      */
     var colorCodes = {
-        'fld' : '#ff7800',
-        'pstr' : '#ff7800',
-        'other' : '#ff7800',
-        'notes' : '#ff7800',
-        'bndry' : '#ff7800'
+        'hay' : '#ff7800',
+        'corn' : '#ff7800',
+        'soybeans' : '#ff7800',
+        'oats' : '#ff7800',
+        'seeding' : '#ff7800',
+        'canary grass' : '#ff6689'
     }
 
     // Form actions
@@ -83,7 +89,7 @@ function closeNav() {
         var prop = feature.properties;
         if (id === 'nvfdata') {
             return L.popup().setContent('<p style="font-size:12px"><b>Name: </b>' + prop.name + 
-                                        '<br><b>Type: </b>' + prop.landtype + 
+                                        '<br><b>Type: </b>' + capitalizeFirstLetter(prop.landtype) + 
                                         '<br><b>ID Local: </b>' + prop.idlocal +
                                         '<br><b>ID USDA: </b>' + prop.idusda +
                                         '<br><b>Size(ac): </b>' + prop.sizeac + '</p>');
@@ -129,7 +135,7 @@ function closeNav() {
         var query_set = new Set();
         features.forEach(function(feature) {
             if (id === 'nvfdata') {
-                query_set.add(feature.properties.landtype);
+                query_set.add(capitalizeFirstLetter(feature.properties.landtype));
             } else if (id === 'notes') {
                 query_set.add(feature.properties.note_type);
             } else if (id === 'nvfboundary') {
@@ -197,9 +203,9 @@ function closeNav() {
                     id: self.id,
                     style: function (feature) { 
                         //return {color: "#000"}; //Sets color of assets features
-                        if (feature.properties.landtype === 'field') {
+                        if (capitalizeFirstLetter(feature.properties.landtype) === 'Field') {
                             return {color: "#F2EE16"};
-                        } else if (feature.properties.landtype === 'pasture') {
+                        } else if (capitalizeFirstLetter(feature.properties.landtype) === 'Pasture') {
                             return {color: "#63A807"};
                         } else {
                             return {color: "#307B87"};
@@ -296,10 +302,13 @@ function closeNav() {
                     },
                     id: id,
                     style: function (feature) {
-                            return {color: "#ff6689"}; 
+                        if (capitalizeFirstLetter(feature.properties.landtype) === 'Field') {
+                            //color code by cropyr__
+                            return {color:colorCodes[feature.properties.cropyr16]};
+                        } else {return {color: "#ff6689"};} 
                     },
                     filter: function(feature, layer) {
-                            return feature.properties.landtype === select_box.value;
+                            return capitalizeFirstLetter(feature.properties.landtype) === select_box.value;
                         }
                     });
             }
