@@ -50,7 +50,7 @@ function closeNav() {
      * JSON for colors
      */
     var colorCodes = {
-        'assets' : '#ff7800',
+        'fld' : '#ff7800',
         'pstr' : '#ff7800',
         'other' : '#ff7800',
         'notes' : '#ff7800',
@@ -81,8 +81,12 @@ function closeNav() {
         // TODO make popup unique by layer and show everything
 
         var prop = feature.properties;
-        if (id === 'assets') {
-            return L.popup().setContent('<p style="font-size:12px"><b>Name: </b>' + prop.name + '<br><b>Type: </b>' + prop.landtype + '<br><b>Size(ac): </b>'+prop.sizeac+'</p>');
+        if (id === 'nvfdata') {
+            return L.popup().setContent('<p style="font-size:12px"><b>Name: </b>' + prop.name + 
+                                        '<br><b>Type: </b>' + prop.landtype + 
+                                        '<br><b>ID Local: </b>' + prop.idlocal +
+                                        '<br><b>ID USDA: </b>' + prop.idusda +
+                                        '<br><b>Size(ac): </b>' + prop.sizeac + '</p>');
         } else if (id === 'notes'){
             return L.popup().setContent('<p style="font-size:12px"><b>Type: </b>' + prop.note_type + '<br><b>Message: </b>' + prop.note_msg+'</p>');
         } else {
@@ -124,8 +128,7 @@ function closeNav() {
         console.log("new_layers: ", features, "ID: ",id); //get rows
         var query_set = new Set();
         features.forEach(function(feature) {
-            //console.log(feature.properties);
-            if (id === 'assets') {
+            if (id === 'nvfdata') {
                 query_set.add(feature.properties.landtype);
             } else if (id === 'notes') {
                 query_set.add(feature.properties.note_type);
@@ -194,9 +197,9 @@ function closeNav() {
                     id: self.id,
                     style: function (feature) { 
                         //return {color: "#000"}; //Sets color of assets features
-                        if (feature.properties.landtype === 'Field') {
+                        if (feature.properties.landtype === 'field') {
                             return {color: "#F2EE16"};
-                        } else if (feature.properties.landtype === 'Pasture') {
+                        } else if (feature.properties.landtype === 'pasture') {
                             return {color: "#63A807"};
                         } else {
                             return {color: "#307B87"};
@@ -204,7 +207,6 @@ function closeNav() {
                     }
                 });
             }
-            console.log(self.id);
             new_layers.addTo(map);
         });
     }
@@ -294,7 +296,7 @@ function closeNav() {
                     },
                     id: id,
                     style: function (feature) {
-                            return {color: "#000"};  //#ff6689=pink
+                            return {color: "#ff6689"}; 
                     },
                     filter: function(feature, layer) {
                             return feature.properties.landtype === select_box.value;

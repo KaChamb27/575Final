@@ -34,23 +34,23 @@
         <div id="map_border">
             <p id="map_title"></p>
             <div id="map_button">
-                <p onclick="openNav()">Search Form</p>
+                <p onclick="openNav()">Menu</p>
                 <a href="javascript:void(0)" id="openbtn" onclick="openNav()">&#187;</a></div>
             <div id="map"></div>
         </div>
 
         <div id="panel_border">
-            <p id="panel_title">Nels-Vale Farm<br>Land Assets Map</p>
+            <p id="panel_title">Nels-Vale Farm</p>
             <div id="panel_button">
-                <p onclick="closeNav()">Open Map</p>
+                <p onclick="closeNav()">View Map</p>
                 <a href="javascript:void(0)" id="closebtn" onclick="closeNav()">&#171;</a></div>
             <div id="panel">
                 <div id="form">
                     <form>
-                        <p>Select features:</p>
-                        <input type="checkbox" id="assets">
-                        <label for="assets"> Assets</label>
-                        <div id="assets_div"></div>
+                        <p style="font-size: 18px;"><b>Select features:</b></p>
+                        <input type="checkbox" id="nvfdata">
+                        <label for="nvfdata"> Assets</label>
+                        <div id="nvfdata_div"></div>
                         <input type="checkbox" id="notes">
                         <label for="notes"> Notes</label>
                         <div id="notes_div"></div>
@@ -60,11 +60,9 @@
                     </form>
                     <br>
                     <form>
-                        <label style="font-size: 18px">Parcel Info Submission</label>
+                        <label style="font-size: 18px">Add a note:</label>
                         <br>
-                        <label style="font-size: 18px">Add note:</label>
-                        <br>
-                        <select id="notes">
+                        <select id="add_notes">
                             <option value="" disabled selected style="display: none;">- Choose Type - </option>
                             <option value="nutrient">Nutrient Application</option>
                             <option value="dmgds">Damage or Disease</option>
@@ -73,6 +71,17 @@
                         <br>
                         <label for="add_notes">Add location:</label>
                         <a href="#" id="add_notes" style="padding-left: 15px;">Choose on map</a>
+                    </form>
+                    <br>
+                    <form>
+                        <label style="font-size: 18px">Crop Year:</label>
+                        <br>
+                        <select id="sequence">
+                            <option value="" disabled selected style="display: none;">- Choose Year -</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                        </select>
                     </form>
                 </div>
             </div>
@@ -88,6 +97,6 @@
     <script type="text/javascript" src="js/styling.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/user.js"></script>
-
+    <!script type="text/javascript" src="js/sequence.js"><!/script>
 </body>
 </html>

@@ -1,3 +1,5 @@
+/* Add user submitted notes of observations */
+
 $('#add_notes').click(function() {
     var selected_notes = $('#notes').val();
     console.log("notes: ", selected_notes);

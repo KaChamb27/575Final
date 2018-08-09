@@ -16,7 +16,7 @@ form label {
     left: 16px;
 }
 #form p {
-    font-size: 22px;
+    font-size: 20px;
     line-height: 18px;
     position: relative;
     left: 5px;
@@ -33,7 +33,7 @@ form label {
     height: 100%;
     width: 350px;  /*set to zero*/
     position: absolute;
-    background-color: teal;
+    background-color: #B10031;
     overflow-x: hidden;
     transition: 0.1s;
     padding-top: 60px;
@@ -46,7 +46,7 @@ form label {
     height: 90%;
     width: 90%;
 
-    background-color: skyblue;
+    background-color: #EED896;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;

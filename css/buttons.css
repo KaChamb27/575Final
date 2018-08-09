@@ -64,12 +64,12 @@
     border-radius: 3px;
     background: green;
 }
-#add_obs:hover {
+#add_notes:hover {
     -webkit-box-shadow: -1px 2px 11px rgba(50, 50, 50, 1);
     -moz-box-shadow:    -1x 2px 11px rgba(50, 50, 50, 1);
     box-shadow:         -1px 2px 11px rgba(50, 50, 50, 1);
 }
-#add_obs:active {
+#add_notess:active {
     position: relative; top: 1px;
     color:black;
 }
