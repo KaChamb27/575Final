@@ -58,7 +58,7 @@ function closeNav() {
     }
 
     // Form actions
-    var api_key = 'yfKyNPgzg2rEQC-6mwsaIg';
+    var api_key = 'IhthB5sCJTyIhOyqcopbiw';
     
     /**
      * Function for generating an SQL statement
