@@ -1,10 +1,10 @@
 /* Add user submitted notes of observations */
 
 $('#add_notes').click(function() {
-    var selected_notes = $('#notes').val();
+    var selected_notes = $('#obs').val();
     console.log("notes: ", selected_notes);
 
-    if (($('#notes').val() === undefined) || ($('#notes').val() === null)) {
+    if (($('#obs').val() === undefined) || ($('#obs').val() === null)) {
         alert('Choose a note type!');
     } else {
         L.DomUtil.addClass(map._container,'crosshair-cursor-enabled');
@@ -30,10 +30,9 @@ $('#add_notes').click(function() {
                     draggable: true,
                     opacity: 1
                 });
-                var popup = '<b>Note:</b> ' + $('#notes').val() + '<br><br><a id="popup_button">Remove</a>';
+                var popup = '<b>Note:</b> ' + $('#obs').val() + '<br><br><a id="popup_button">Remove</a>';
                 notes_location.bindPopup(popup);
                 notes_location.addTo(map);
-                console.log(notes_location);
 
                 notes_location.on('popupopen', remove_user_point);
 
