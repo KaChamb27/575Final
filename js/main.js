@@ -55,12 +55,20 @@ function capitalizeFirstLetter(string) {
      * JSON for colors
      */
     var colorCodes = {
-        'hay' : '#ff7800',
-        'corn' : '#ff7800',
-        'soybeans' : '#ff7800',
-        'oats' : '#ff7800',
-        'seeding' : '#ff7800',
-        'canary grass' : '#ff6689'
+        'hay' : '#BDFF55',
+        'corn' : '#CCA326',
+        'soybeans' : '#CCBB36',
+        'oats' : '#2F727F',
+        'seeding' : '#48FF1A',
+        'canary grass' : '#597F0A',
+        'grass' : 'yellow',
+        'forest' : 'green',
+        'boundary' : 'red',
+        'waterway' : 'teal',
+        'road' : 'yellow',
+        'developed' : 'purple',
+        'creekbed' : 'blue',
+        'water' : 'white'
     }
 
     // Form actions
@@ -304,8 +312,13 @@ function capitalizeFirstLetter(string) {
                     style: function (feature) {
                         if (capitalizeFirstLetter(feature.properties.landtype) === 'Field') {
                             //color code by cropyr__
-                            return {color:colorCodes[feature.properties.cropyr16]};
-                        } else {return {color: "#ff6689"};} 
+                            return {color:colorCodes[feature.properties.cropyr18]};
+                        } else if (capitalizeFirstLetter(feature.properties.landtype) === 'Pasture') {
+                            return {color: colorCodes[feature.properties.pstrcover]};
+                        } else if (capitalizeFirstLetter(feature.properties.landtype) === 'Other') {
+                            return {color: colorCodes[feature.properties.othrtype]};
+                        }
+                        else {return {color: "#ff6689"};} 
                     },
                     filter: function(feature, layer) {
                             return capitalizeFirstLetter(feature.properties.landtype) === select_box.value;
