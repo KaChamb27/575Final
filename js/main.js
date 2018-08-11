@@ -1,6 +1,6 @@
-/**
- * Function to reopen the layer table of contents
- */
+/* GEOG575, Final Project. */
+
+//Function to reopen the layer table of contents
 function openNav() {
     console.log("clicked open");
     editing = false;
@@ -12,15 +12,14 @@ function openNav() {
 }
 
 
-/**
- * Function to hide the layer table of contents
- */
+//Function to hide the layer table of contents
 function closeNav() {
     console.log("clicked close");
     document.getElementById("panel_border").style.width = "0";
     $("#map_border").css('background-color', 'white');
     $("#panel_title").html('');
     $("#map_title").html('Nels-Vale Farm');
+    $("#map_text").html('Click on displayed parcel for info.');
 }
 
 //Capitalize first letter of strings
@@ -28,15 +27,10 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-//console.log("here");
-
 (function() {
     'use strict';
-
-
-    /**
-     * Main function to instantiate a map object
-     */
+ 
+    //Main function to instantiate a map object
     function initialize() {
         map = L.map('map', {
             center: [43.106, -89.99],
@@ -51,9 +45,7 @@ function capitalizeFirstLetter(string) {
         }).addTo(map);
     }
 
-    /**
-     * JSON for colors
-     */
+    //JSON for colors
     var colorCodes = {
         'hay' : '#BDFF55',
         'corn' : '#CCA326',
@@ -68,7 +60,7 @@ function capitalizeFirstLetter(string) {
         'road' : 'yellow',
         'developed' : 'purple',
         'creekbed' : 'blue',
-        'water' : 'white'
+        'water' : 'blue'
     }
 
     // Form actions
@@ -96,11 +88,32 @@ function capitalizeFirstLetter(string) {
 
         var prop = feature.properties;
         if (id === 'nvfdata') {
-            return L.popup().setContent('<p style="font-size:12px"><b>Name: </b>' + prop.name + 
+            if (prop.landtype === "field") {
+                return L.popup().setContent('<p style="font-size:12px"><b>Name: </b>' + prop.name + 
                                         '<br><b>Type: </b>' + capitalizeFirstLetter(prop.landtype) + 
                                         '<br><b>ID Local: </b>' + prop.idlocal +
                                         '<br><b>ID USDA: </b>' + prop.idusda +
+                                        '<br><b>Size(ac): </b>' + prop.sizeac + 
+                                        '<br><b>2016: </b>' + capitalizeFirstLetter(prop.cropyr16) +
+                                        '<br><b>2017: </b>' + capitalizeFirstLetter(prop.cropyr17) +
+                                        '<br><b>2018: </b>' + capitalizeFirstLetter(prop.cropyr18) +
+                                        '<br><b>Soil: </b>' + capitalizeFirstLetter(prop.soiltype) + '</p>');
+            } else if (prop.landtype === "pasture") {
+                return L.popup().setContent('<p style="font-size:12px"><b>Name: </b>' + prop.name + 
+                                        '<br><b>Type: </b>' + capitalizeFirstLetter(prop.landtype) + 
+                                        '<br><b>ID Local: </b>' + prop.idlocal +
+                                        '<br><b>Cover: </b>' + capitalizeFirstLetter(prop.pstrcover) +
                                         '<br><b>Size(ac): </b>' + prop.sizeac + '</p>');
+            } else {
+                return L.popup().setContent('<p style="font-size:12px"><b>Name: </b>' + prop.name + 
+                                        '<br><b>Other Type: </b>' + capitalizeFirstLetter(prop.othrtype) + 
+                                        '<br><b>ID Local: </b>' + prop.idlocal +
+                                        '<br><b>Cover: </b>' + capitalizeFirstLetter(prop.othrcover) +
+                                        '<br><b>Size(ac): </b>' + prop.sizeac + '</p>');
+            }
+            
+                                        
+                
         } else if (id === 'notes'){
             return L.popup().setContent('<p style="font-size:12px"><b>Type: </b>' + prop.note_type + '<br><b>Message: </b>' + prop.note_msg+'</p>');
         } else {
@@ -226,9 +239,7 @@ function capitalizeFirstLetter(string) {
     }
 
 
-    /**
-     * Layer checkbox events and logic
-     */ //https://knelson4.carto.com/builder/d9d73fb3-38e8-4dd8-8b69-f8394163a7b2/embed
+    //Layer checkbox events and logic //https://knelson4.carto.com/builder/d9d73fb3-38e8-4dd8-8b69-f8394163a7b2/embed
 
     var base_url = 'https://knelson4.carto.com/api/v2/sql?format=GeoJSON&q=';
     $("input:checkbox").change(function() {
@@ -311,14 +322,7 @@ function capitalizeFirstLetter(string) {
                     id: id,
                     style: function (feature) {
                         if (capitalizeFirstLetter(feature.properties.landtype) === 'Field') {
-                            //color code by cropyr__
-                            if (select_box.value === '2016') {
-                                return {color: colorCodes[feature.properties.cropyr16]};
-                            } else if (select_box.value === '2017') {
-                                return {color: colorCodes[feature.properties.cropyr17]};
-                            } else if (select_box.value === '2018') {
-                                return {color: colorCodes[feature.properties.cropyr18]};
-                            } else {return {color: '#000'};}
+                            return {color: colorCodes[feature.properties.cropyr18]};
                         } else if (capitalizeFirstLetter(feature.properties.landtype) === 'Pasture') {
                             return {color: colorCodes[feature.properties.pstrcover]};
                         } else if (capitalizeFirstLetter(feature.properties.landtype) === 'Other') {
