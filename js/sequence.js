@@ -1,71 +1,72 @@
 /* Sequence crop years */
 
 var SequenceControl = L.Control.extend({
-        options: {
-            position: 'bottomleft'
-        },
+    options: {
+        position: 'bottomleft'
+    },
+    
+    onAdd: function(map) {
+    //create the control container div with a particular class name
+        var container = L.DomUtil.create('div', 'sequence-control-container');
+            
+       //move slider into onAdd
+        $(container).append('<input class="range-slider" type="range">');
+            
+       //add skip buttons
+        $(container).append('<button class="skip" id="reverse" title="Reverse">Reverse</button>');
+        $(container).append('<button class="skip" id="forward" title="Forward">Skip</button>');
+        //replace button content with images
+        $('#reverse').html('<img src="img/reversearrow.png">');
+        $('#forward').html('<img src="img/forwardarrow.png">');
+            
+       //kill any mouse event listeners on the map
+        $(container).on('mousedown dblclick', function(e){
+            L.DomEvent.stopPropagation(e);
+        });
+            
+        //... initialize other dom elements, i.e. listeners.
+            
+        return container;
+    }
+});
+    
+map.addControl(new SequenceControl());
+    
+//create range input element (slider)
+//$('#panel').append('<input class="range-slider" type="range">');
+    
+//set slider attributes
+$('.range-slider').attr({
+    max: 9,
+    min: 0,
+    value: 0,
+    step: 1
+});
+    
+    
+    
+//click listerner for buttons
+$('.skip').click(function(){
+    //get the old index value
+    var index = $('.range-slider').val();
+    //increment or decrement depending on button clicked
+    if ($(this).attr('id') == 'forward'){
+        index++;
+        //if past the last attribute, wrap around to first attribute
+        index = index > 9 ? 0 : index;
+        //pass new attribute to update symbols
+        updatePropSymbols(map, attributes[index]);
+    } else if ($(this).attr('id') == 'reverse'){
+        index--;
+        //if past the first attribute, wrap around to last attribute
+        index = index < 0 ? 9 : index;
+        //pass new attribute to update symbols
+        updatePropSymbols(map, attributes[index]);
+    $('.range-slider').val(index);
         
-        onAdd: function(map) {
-            //create the control container div with a particular class name
-            var container = L.DomUtil.create('div', 'sequence-control-container');
-            
-            //move slider into onAdd
-            $(container).append('<input class="range-slider" type="range">');
-            
-            //add skip buttons
-            $(container).append('<button class="skip" id="reverse" title="Reverse">Reverse</button>');
-            $(container).append('<button class="skip" id="forward" title="Forward">Skip</button>');
-            //replace button content with images
-            $('#reverse').html('<img src="img/reversearrow.png">');
-            $('#forward').html('<img src="img/forwardarrow.png">');
-            
-            //kill any mouse event listeners on the map
-            $(container).on('mousedown dblclick', function(e){
-                L.DomEvent.stopPropagation(e);
-            });
-            
-            //... initialize other dom elements, i.e. listeners.
-            
-            return container;
-        }
-    });
-    
-    map.addControl(new SequenceControl());
-    
-    //create range input element (slider)
-    //$('#panel').append('<input class="range-slider" type="range">');
-    
-    //set slider attributes
-    $('.range-slider').attr({
-        max: 9,
-        min: 0,
-        value: 0,
-        step: 1
-    });
-    
-    
-    
-    //click listerner for buttons
-    $('.skip').click(function(){
-        //get the old index value
-        var index = $('.range-slider').val();
-        //increment or decrement depending on button clicked
-        if ($(this).attr('id') == 'forward'){
-            index++;
-            //if past the last attribute, wrap around to first attribute
-            index = index > 9 ? 0 : index;
-            //pass new attribute to update symbols
-            updatePropSymbols(map, attributes[index]);
-        } else if ($(this).attr('id') == 'reverse'){
-            index--;
-            //if past the first attribute, wrap around to last attribute
-            index = index < 0 ? 9 : index;
-            //pass new attribute to update symbols
-            updatePropSymbols(map, attributes[index]);
-        $('.range-slider').val(index);
-        
-        };
-    });
+    };
+});
+
 //Create sequence controls
 function createSequenceControls(map, attributes){
     
@@ -137,7 +138,7 @@ function createSequenceControls(map, attributes){
     });
 };
 
-//createSequenceControls(map, data);
+createSequenceControls(map, data);
 
 
 

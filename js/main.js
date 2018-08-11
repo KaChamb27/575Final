@@ -120,7 +120,7 @@ function capitalizeFirstLetter(string) {
      */
     function build_query_combo(final_set, id) {
         var combo_html = '<select id="' + id + '_combo">';
-        var middle = '<option value="" disabled selected style="display: none;">Filter Layer:</option>';
+        var middle = '<option value="" disabled selected style="display: none;">- Choose Type -</option>';
         var final_array = Array.from(final_set);
         
         for (var i in final_array) {
@@ -273,7 +273,7 @@ function capitalizeFirstLetter(string) {
         // remove all current data for the selected layer
         remove_data(id);
         console.log("in filter");
-
+        
         $.getJSON(base_url + get_sql_query(id), function(data) {
             var data_type = data.features[0].geometry.type;
             var new_layers;
@@ -312,7 +312,13 @@ function capitalizeFirstLetter(string) {
                     style: function (feature) {
                         if (capitalizeFirstLetter(feature.properties.landtype) === 'Field') {
                             //color code by cropyr__
-                            return {color:colorCodes[feature.properties.cropyr18]};
+                            if (select_box.value === '2016') {
+                                return {color: colorCodes[feature.properties.cropyr16]};
+                            } else if (select_box.value === '2017') {
+                                return {color: colorCodes[feature.properties.cropyr17]};
+                            } else if (select_box.value === '2018') {
+                                return {color: colorCodes[feature.properties.cropyr18]};
+                            } else {return {color: '#000'};}
                         } else if (capitalizeFirstLetter(feature.properties.landtype) === 'Pasture') {
                             return {color: colorCodes[feature.properties.pstrcover]};
                         } else if (capitalizeFirstLetter(feature.properties.landtype) === 'Other') {
