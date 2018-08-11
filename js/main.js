@@ -312,13 +312,14 @@ function capitalizeFirstLetter(string) {
                     style: function (feature) {
                         if (capitalizeFirstLetter(feature.properties.landtype) === 'Field') {
                             //color code by cropyr__
-                            if (select_box.value === '2016') {
-                                return {color: colorCodes[feature.properties.cropyr16]};
-                            } else if (select_box.value === '2017') {
-                                return {color: colorCodes[feature.properties.cropyr17]};
-                            } else if (select_box.value === '2018') {
-                                return {color: colorCodes[feature.properties.cropyr18]};
-                            } else {return {color: '#000'};}
+                            //if (select_box.value === '2016') {
+                            //    return {color: colorCodes[feature.properties.cropyr16]};
+                            //} else if (select_box.value === '2017') {
+                            //    return {color: colorCodes[feature.properties.cropyr17]};
+                            //} else if (select_box.value === '2018') {
+                            //    return {color: colorCodes[feature.properties.cropyr18]};
+                            //} else {return {color: '#000'};}
+                            return {color: colorCodes[feature.properties.cropyr18]};
                         } else if (capitalizeFirstLetter(feature.properties.landtype) === 'Pasture') {
                             return {color: colorCodes[feature.properties.pstrcover]};
                         } else if (capitalizeFirstLetter(feature.properties.landtype) === 'Other') {
