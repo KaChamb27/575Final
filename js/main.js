@@ -19,6 +19,7 @@ function closeNav() {
     $("#map_border").css('background-color', 'white');
     $("#panel_title").html('');
     $("#map_title").html('Nels-Vale Farm');
+    $("#map_text").html('Click on displayed parcel for info.');
 }
 
 //Capitalize first letter of strings

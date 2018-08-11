@@ -61,6 +61,13 @@ form label {
     text-align: center;
 }
 
+#map_text {
+    position: relative;
+    top: -40px;
+    font-size: 12px;
+    text-align: center;
+}
+
 #panel_title {
     position: relative;
     top: -30px;
