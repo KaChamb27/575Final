@@ -39,3 +39,31 @@ Bottom 8/ 1025108
                         <label for="cropyr" style="font-size: 14px;">Crop Year:</label>
                             <div id="cropyr_div"></div></div>
                             
+} else if (id === 'pstr') {
+                query_set.add(feature.properties);
+            } else if (id === 'otr') {
+                query_set.add(feature.properties);
+                
+
+<input type="checkbox" id="pstr">
+                        <label for="pstr"> Pastures</label>
+                        <div id="pstr_div"></div>
+                        <input type="checkbox" id="pstr">
+                        <label for="otr"> Other</label>
+                        <div id="otr_div"></div>
+                        
+'<br><b>2016: </b>' + prop.cropyr2016 +
+                                        '<br><b>2017: </b>' + prop.cropyr2017 +
+                                        '<br><b>2018: </b>' + prop.cropyr2018 +
+                                        '<br><b>Soil: </b>' + prop.soiltype;
+                                        
+                                        
+//color code by cropyr__
+                            //if (select_box.value === '2016') {
+                            //    return {color: colorCodes[feature.properties.cropyr16]};
+                            //} else if (select_box.value === '2017') {
+                            //    return {color: colorCodes[feature.properties.cropyr17]};
+                            //} else if (select_box.value === '2018') {
+                            //    return {color: colorCodes[feature.properties.cropyr18]};
+                            //} else {return {color: '#000'};}
+                            
