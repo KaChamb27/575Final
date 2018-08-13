@@ -81,7 +81,7 @@ form label {
     width: 90%;
 }
 
-#add_notes, #notes, #sequence {
+#add_notes {
     position: relative;
     left: 20px;
 }

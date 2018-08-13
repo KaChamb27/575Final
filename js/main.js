@@ -1,4 +1,4 @@
-/* GEOG575, Final Project. */
+/* NVF Project. */
 
 //Function to reopen the layer table of contents
 function openNav() {
