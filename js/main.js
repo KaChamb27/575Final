@@ -93,9 +93,9 @@ function capitalizeFirstLetter(string) {
                                         '<br><b>ID Local: </b>' + prop.idlocal +
                                         '<br><b>ID USDA: </b>' + prop.idusda +
                                         '<br><b>Size(ac): </b>' + prop.sizeac + 
-                                        '<br><b>2016: </b>' + capitalizeFirstLetter(prop.cropyr16) + '  <b>Yield: </b>0'+ //+ prop.yield16 + 
-                                        '<br><b>2017: </b>' + capitalizeFirstLetter(prop.cropyr17) + '  <b>Yield: </b>0'+ //+ prop.yield17 +
-                                        '<br><b>2018: </b>' + capitalizeFirstLetter(prop.cropyr18) + '  <b>Yield: </b>0'+ //+ prop.yield18 +
+                                        '<br><b>2016: </b>' + capitalizeFirstLetter(prop.cropyr16) + '<b>Yield: </b>0'+ //+ prop.yield16 + 
+                                        '<br><b>2017: </b>' + capitalizeFirstLetter(prop.cropyr17) + '<b>Yield: </b>0'+ //+ prop.yield17 +
+                                        '<br><b>2018: </b>' + capitalizeFirstLetter(prop.cropyr18) + '<b>Yield: </b>0'+ //+ prop.yield18 +
                                         '<br><b>Soil: </b>' + capitalizeFirstLetter(prop.soiltype) + '</p>');
             } else if (prop.landtype === "pasture") {
                 return L.popup().setContent('<p style="font-size:12px"><b>Name: </b>' + prop.name + 
