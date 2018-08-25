@@ -3,7 +3,7 @@
     width: 100%;
     position: absolute;
     overflow-x: hidden;
-    padding-top: 60px;
+    padding-top: 30px;
     z-index: 4;
     background-color: lightgray;
 }
@@ -20,7 +20,6 @@
     z-index: 1;
     border-radius: 20px;
 }
-#map_border p, #panel_border p{
+#map_border p {
     color: #282828;
-    font-size: 30px;
 }

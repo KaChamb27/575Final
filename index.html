@@ -38,17 +38,25 @@
                 <p onclick="openNav()">Menu</p>
                 <a href="javascript:void(0)" id="openbtn" onclick="openNav()">&#187;</a></div>
             <div id="map"></div>
+            <div id="legend"></div>
         </div>
 
         <div id="panel_border">
             <p id="panel_title">Nels-Vale Farm</p>
             <div id="panel_button">
-                <p onclick="closeNav()">View Map</p>
+                <p onclick="closeNav()" style="color: floralwhite;">View Map</p>
                 <a href="javascript:void(0)" id="closebtn" onclick="closeNav()">&#171;</a></div>
             <div id="panel">
                 <div id="form">
-                    <form>
-                        <p style="font-size: 18px;"><b>Select features:</b></p>
+                    <div id="basemap"><form>
+                        <p style="font-size: 14px;"><b>Change basemap:</b></p>
+                        <input type="radio" name="basemap" id="basemap" value="satellite"> Satellite
+                        <input type="radio" name="basemap" id="basemap" value="terrain"> Terrain
+                        </form>
+                    </div>
+                    <br>
+                    <div id="selectFeatures"><form>
+                        <p style="font-size: 14px;"><b>Select features:</b></p>
                         <input type="checkbox" id="nvfdata">
                         <label for="nvfdata"> Assets</label>
                         <div id="nvfdata_div"></div>
@@ -58,21 +66,37 @@
                         <input type="checkbox" id="nvfboundary">
                         <label for="nvfboundary"> Boundary</label>
                         <div id="bndry_div"></div>
-                    </form>
+                    </form></div>
                     <br>
-                    <form>
-                        <label style="font-size: 18px">Make a note:</label>
-                        <br>
+                    <div id="searchform"><form method="POST">
+                        <p style="font-size: 14px;"><b>Search Assets:</b></p>
+                        <!input type="search" id="search" placeholder="Enter search criteria" style="font-size: 12px;">
+                        <!br>
+                        <input type="radio" name="search" id="search" value="byName"> by Name
+                        <div id="byName_div"></div>
+                        <input type="radio" name="search" id="search" value="byUSDA"> by USDA ID<br>
+                        <div id="byUSDA_div"></div>
+                        <div id="searchbtn">
+                            <button name="search" type="button">Search</button>
+                        </div></form>
+                    </div>
+                    <br>
+                    <div id="noteForm"><form>
+                        <p style="font-size: 14px"><b>Make a note:</b></p>
                         <select id="obs">
                             <option value="" disabled selected style="display: none;">- Choose Type -</option>
-                            <option value="nutrient">Nutrient Application</option>
-                            <option value="dmgds">Damage or Disease</option>
-                            <option value="other">Other</option>
+                            <option value="Nutrient Application">Nutrient Application</option>
+                            <option value="Damage or Disease<">Damage or Disease</option>
+                            <option value="Other">Other</option>
                         </select>
                         <br>
+                        <form><b>Note: </b><input type="text" id="note" number="100" autocomplete="off"></form>
                         <label for="add_notes">Add location:</label>
-                        <a href="#" id="add_notes" style="padding-left: 15px;">Choose on map</a>
-                    </form>
+                        <a href="#" id="add_notes" style="padding-left: 15px;">Choose on map</a><br>
+                        <div id="notebtn">
+                            <button name="addnote" type="button">
+                            Submit Note</button></div>
+                    </form></div>
                 </div>
             </div>
         </div>

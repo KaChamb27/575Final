@@ -30,7 +30,9 @@ $('#add_notes').click(function() {
                     draggable: true,
                     opacity: 1
                 });
-                var popup = '<b>Note:</b> ' + $('#obs').val() + '<br><br><a id="popup_button">Remove</a>';
+                var note = document.getElementById("note").value;
+                console.log("note: " + note );
+                var popup = '<b>Note:</b> ' + $('#obs').val() + '<br><b>Details:</b> '+ note + '<br><br><a id="popup_button">Remove</a>';
                 notes_location.bindPopup(popup);
                 notes_location.addTo(map);
 
@@ -39,6 +41,7 @@ $('#add_notes').click(function() {
                 editing = false;
                 L.DomUtil.removeClass(map._container,'crosshair-cursor-enabled');
             }
+            openNav();
         });
     }
 });

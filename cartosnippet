@@ -67,3 +67,58 @@ Bottom 8/ 1025108
                             //    return {color: colorCodes[feature.properties.cropyr18]};
                             //} else {return {color: '#000'};}
                             
+<input type="radio" id="byname">
+                        <label for="byname">By Name</label>
+                        <div id="byname_div"></div>
+                        <input type="radio" id="bylocal">
+                        <label for="bylocal">By Local ID</label>
+                        <div id="bylocal_div"></div>
+                        <input type="radio" id="byusda">
+                        <label for="byusda">By Name</label>
+                        <div id="byusda_div"></div>
+                        
+onclick="searchAssets"
+
+
+console.log("in searchAssets");
+        var sql = cartodb.SQL({ user: 'knelson4' });
+            $(search).autocomplete({
+                source: function( request, response ) {
+                    var s
+                    sql.execute("select * from nvfdata where name ilike '" + request.term + "%'").done(function(data) {
+                        response(data.rows.map(function(r) {
+                                return {value: r.name};
+                            })
+                        )
+                    })
+                },
+                minLength: 2
+            });
+            
+            /*
+        document.getElementById("search").autocomplete = "off";
+        document.getElementById("search").placeholder;
+        document.getElementById("demo").innerHTML = x;
+        */
+        
+        
+        <div id="searchbtn"><button name="search" type="button" onclick="searchAssets()"><a href="javascript:void(0)" id="searchbtn" onclick="searchAssets()">Search</a></button></div>
+        
+        /* Causes script to stop
+            if (self.id === 'byname'||self.id === 'byusda') {
+                console.log("_");
+                //****** return variable for byname criteria *******
+                return self.id = 'nvfdata';
+            } else { 
+                return console.log("in else");
+            };
+            */
+            
+            
+                                <p id="demo"></p>
+
+            document.getElementById('basemap').addEventListener('click', updateMap, true);
+
+https://knelson4.carto.com/api/v2/sql?format=GeoJSON&q=SELECT%20*%20FROM%20nvfdata%20WHERE%20name%20=%20Bottom%208&api_key=IhthB5sCJTyIhOyqcopbiw
+
+https://knelson4.carto.com/api/v2/sql?format=GeoJSON&q=SELECT%20*%20FROM%20nvfdata%20WHERE%20name%20=%20%27[object%20HTMLInputElement]&api_key=IhthB5sCJTyIhOyqcopbiw
